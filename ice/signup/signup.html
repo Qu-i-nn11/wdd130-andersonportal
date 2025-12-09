@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Feed Sign Up</title>
+
+    <style>
+        * {
+            margin: 0;
+        }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: rgb(120, 96, 64); /* Matches the warm brown tone */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    #formContainer {
+        position: relative;
+        background-color: white;
+        border-radius: 20px;
+        border: 9px solid navy;
+        padding: 0;
+        width: 400px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        overflow: hidden;
+    }
+
+    #topImage {
+        width: 100%;
+        display: block;
+        border-radius: 15px 15px 0 0;
+    }
+
+    #overlayText {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 100%;
+        color: white;
+        text-shadow: 1px 1px 4px black;
+        font-family: 'Georgia', serif;
+        }
+
+    #overlayText h2 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    #overlayText h3 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    #myForm {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 10px 20px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #myForm h3 {
+        grid-column: span 2;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    #myForm label {
+        align-self: center;
+        justify-self: end;
+    }
+
+    #myForm input[type="text"],
+    #myForm input[type="password"],
+    #myForm input[type="email"] {
+        justify-self: start;
+        width: 100%;
+        padding: 6px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    #myForm section {
+        grid-column: span 2;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #myForm button[type="submit"] {
+        grid-column: span 2;
+        background-color: navy;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    fieldset {
+        border: none;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    button[type="submit"] {
+        background-color: navy;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .scriptures {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .scriptures img {
+        width: 70px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    </style>
+
+</head>
+<body>
+    <div id="formContainer">
+        <img src="images/jesus_feeds_5000.jpeg" alt="Jesus Feeds 5000" id="topImage">
+        <div id="overlayText">
+                <h2>Daily Feed</h2>
+                <h3>Scripture a Day</h3>
+        </div>
+        <form id="myForm">
+            <h4>Sign Up for Daily Scripture Feed</h4>
+
+            <label for="username">User Name:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <fieldset>
+                <legend>Gender:</legend>
+                <label><input type="radio" name="gender" value="male" required> Male</label>
+                <label><input type="radio" name="gender" value="female" required> Female</label>
+            </fieldset>
+
+            <label><input type="checkbox" id="newsletter" name="newsletter"> Subscribe to newsletter</label>
+            <label><input type="checkbox" id="conditions" name="conditions" required> I acknowledge the terms and conditions</label>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div class = "scriptures">
+            <img src="images/book_of_mormon.webp" alt="Book Of Mormon">
+            <img src="images/doctrine_and_covenants.webp" alt="Doctrine and Covenants">
+            <img src="images/new_testament.webp" alt="New Testament">
+            <img src="images/old_testament.webp" alt="OLd Testament">
+            <img src="images/pearl_of_great_price.webp" alt="Pearl of Great Price">
+        </div>
+    </div>
+</body>
+
+    <div id="output"></div>
+
+    <script>
+        // Here is some Javascript to start looking forward to wdd131
+        document.getElementById("closeBtn").addEventListener("click", function () {
+            document.getElementById("formContainer").style.display = "none";
+         });
+        const form = document.getElementById('myForm');
+        const output = document.getElementById('output');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault(); // Stop form from actually submitting
+
+            const formData = new FormData(form);
+            const entries = [];
+
+            for (const [key, value] of formData.entries()) {
+                if (key == "password") {
+                    entries.push(`<strong>${key}</strong>: ${value} (you should probably encrypt the password)`);
+                } else {
+                    entries.push(`<strong>${key}</strong>: ${value}`);
+                }
+            }
+
+            output.innerHTML = `
+            <br>  
+            <h3>Here is the data that would be sent to the server:</h3>
+            <ul>
+                ${entries.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+            `;
+                });
+    </script>
+
+</body>
+
+</html>

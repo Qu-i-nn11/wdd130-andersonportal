@@ -1,0 +1,83 @@
+footer{
+    text-align: center;
+    color: orangered;
+}
+
+h1{
+    font-family: 'Creepster', cursive;
+    font-size: 400%;
+    text-align: center;
+    color: orangered;
+    animation: glow 2s infinite;
+}
+
+body{
+    background-color: black;
+}
+
+nav li{
+    color: orangered;
+}
+
+h2{
+    color: rgba(0, 128, 0, 0.418);
+    text-align: center;
+    animation: glow 2s infinite;
+}
+
+p {
+    color: white;
+    animation: flicker 1.5s infinite;
+}
+
+img{
+    object-fit: cover;
+    border: 6px solid orangered;
+    border-radius: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    animation: wiggle 0.5s infinite;
+}
+
+nav li:hover {
+  color: white;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  font-size: 120%;
+  animation: flicker 1.5s infinite;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0;
+  }
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 5px orangered; }
+  50% { text-shadow: 0 0 20px red; }
+  100% { text-shadow: 0 0 5px orangered; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(-2deg); }
+  75% { transform: rotate(1deg); }
+}
