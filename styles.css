@@ -100,3 +100,15 @@ body {
 .footer-links a:hover {
   text-decoration: underline;
 }
+.report-section {
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+.report-section h2 {
+  color: #002E5D;
+}
+.report-section p {
+  line-height: 1.6;
+}
